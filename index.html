@@ -6,8 +6,92 @@
     <title>Meu Site Pessoal</title>
     <link rel="stylesheet" href="styles.css"> <!-- Arquivo CSS externo -->
     <script defer src="script.js"></script> <!-- Arquivo JavaScript externo -->
+    <style>
+        /* Estilos gerais */
+        body {
+            font-family: Arial, sans-serif; /* Fonte principal do site */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Cabeçalho - Para alterar a cor de fundo, modifique background-color */
+        .cabecalho {
+            background-color: #4A90E2; /* Azul médio */
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            height:250px;
+        }
+
+        /* Container principal - Responsável por organizar o layout */
+        .container {
+            display: flex;
+            flex-grow: 1;
+        }
+
+        /* Menu lateral - Para alterar a borda, modifique border e border-radius */
+        .menu-lateral {
+            width: 250px;
+            background-color: white;
+            padding: 20px;
+            height: 100vh;
+            border: 2px solid black; /* Cor e espessura da borda */
+            border-radius: 10px; /* Cantos arredondados */
+        }
+        .menu-lateral ul {
+            list-style: none;
+            padding: 0;
+        }
+        .menu-lateral ul li {
+            margin: 10px 0;
+        }
+        .menu-lateral ul li a {
+            color: black;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .menu-lateral ul li a:hover,
+        .menu-lateral ul li a.active {
+            background-color: #ddd; /* Cor de fundo quando selecionado */
+        }
+
+        /* Conteúdo principal */
+        .conteudo {
+            flex-grow: 1;
+            padding: 20px;
+        }
+
+        /* Imagens opcionais - Somente exibidas se um src válido for fornecido */
+        .imagem-cabecalho, .imagem-corpo {
+            max-width: 100%;
+            border-radius: 10px;
+            display: none; /* Por padrão, não exibir */
+        }
+        .imagem-cabecalho[src], .imagem-corpo[src] {
+            display: block; /* Exibir apenas se um src for definido */
+        }
+
+        /* Container de texto arredondado - Modifique background-color e border-radius */
+        .texto-container {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
+    <header class="cabecalho">
+        Meu Site Pessoal
+    </header>
     <div class="container">
         <nav class="menu-lateral">
             <ul>
@@ -18,15 +102,28 @@
             </ul>
         </nav>
         <main class="conteudo">
-            <header class="cabecalho">
-                <img src="header.jpg" alt="Imagem do cabeçalho" class="imagem-cabecalho"> <!-- Opcional -->
+            <header>
+                <img src="header.jpg" alt="" class="imagem-cabecalho"> <!-- Adicione uma imagem para o cabeçalho ou deixe em branco para não exibir -->
             </header>
             <section class="corpo">
-                <h1>Bem-vindo ao meu site!</h1>
-                <p>Este é um site pessoal onde compartilho meus projetos e interesses.</p>
-                <img src="body.jpg" alt="Imagem do corpo" class="imagem-corpo"> <!-- Opcional -->
+                <div class="texto-container">
+                    <h1>Bem-vindo ao meu site!</h1>
+                    <p>Este é um site pessoal onde compartilho meus projetos e interesses.</p>
+                </div>
+                <img src="body.jpg" alt="" class="imagem-corpo"> <!-- Adicione uma imagem no corpo ou deixe em branco para não exibir -->
             </section>
         </main>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const menuItems = document.querySelectorAll(".menu-item");
+            menuItems.forEach(item => {
+                item.addEventListener("click", function() {
+                    menuItems.forEach(i => i.classList.remove("active"));
+                    this.classList.add("active");
+                });
+            });
+        });
+    </script>
 </body>
 </html>
